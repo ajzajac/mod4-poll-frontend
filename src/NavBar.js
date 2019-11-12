@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Link, Router } from 'react-router-dom'
-import Signup from './Signup';
+// import Signup from './Signup';
 
 function NavBar(props) {
     return (
@@ -14,10 +14,11 @@ function NavBar(props) {
                 </Button>
             </Link>
           </Router> */}
-          <Link to='/'>Home</Link>
-          <Link to='/signup' component={Signup}>Signup</Link>
-          <Link to='/login'>Login</Link>
-          
+
+          <Button variant="contained" color="link" ><Link to='/' >Home</Link></Button>
+          <Button variant="contained" color="link" ><Link to='/signup' >Signup</Link></Button>
+          <Button variant="contained" color="link" ><Link to='/login' >Login</Link></Button>
+
       </div>
     );
   }

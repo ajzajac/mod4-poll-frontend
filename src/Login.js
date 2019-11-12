@@ -1,13 +1,48 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export class Login extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+
+class Login extends React.Component{
+  state = {
+    username: "",
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    fetch(`http://localhost:3000/login`,{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(response => {
+        this.props.setUser(response.user)
+        localStorage.token = response.token
+       
+      }
+    )
 }
 
-export default Login
+
+render(){
+    return (
+      <div className="login">
+        <form className="auth-form" onSubmit={this.handleSubmit}>
+          <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default Login;

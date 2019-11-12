@@ -20,3 +20,17 @@
 .App-link {
   color: #09d3ac;
 }
+
+.nav-bar {
+  border-width: 5px;
+  border-style: solid;
+  /* padding: 25px;
+  margin: auto;
+  margin-bottom: 10px; */
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  background-color: rgba(0, 0, 0, 0.6)
+}
