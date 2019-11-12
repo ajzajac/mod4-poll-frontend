@@ -14,9 +14,9 @@ function NavBar(props) {
                 </Button>
             </Link>
           </Router> */}
-          
+          <Link to='/'>Home</Link>
           <Link to='/signup' component={Signup}>Signup</Link>
-          
+          <Link to='/login'>Login</Link>
           
       </div>
     );

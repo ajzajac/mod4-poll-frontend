@@ -26,9 +26,12 @@ class App extends React.Component {
             <Route path="/" render={<div><h1>Everybody Votes</h1></div>} />
           </Switch>
         </Router> */}
-
-        <NavBar />
-        
+        <Router>
+          <NavBar />
+            <Switch>
+              <Route exact path="/" />
+            </Switch>
+        </Router>
     </div>
   )}
   }
