@@ -13,35 +13,35 @@ export class PollCard extends Component {
         commentInput: ''
     }
 
-    // handleCommentSubmit = (event) => {
-    //     event.preventDefault();
-    //     fetch(comments, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             content: this.state.commentInput,
-    //             // user_id: this.props.currentUser.id,
-    //             user_id: 1, 
-    //             poll_id: this.props.currentPoll.id,
-    //         })
-    //     })
+    handleCommentSubmit = (event) => {
+        event.preventDefault();
+        fetch(comments, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                content: this.state.commentInput,
+                user_id: this.props.currentUser.id,
+                poll_id: this.props.currentPoll.id,
+            })
+        })
+        .then(
+            this.setState(prevState => ({
+                allComments: [...prevState.allComments, this.state.commentInput],
+            }))
+        )
         
-    //     this.setState(prevState => ({
-    //         allComments: [...prevState.allComments, this.state.commentInput],
-    //         commentInput: ''
-    //     }))
-    // }
+    }
 
-    // handleNewCommentChange = (event) => {
-    //     this.setState({
-    //         commentInput: event.target.value
-    //     })
-    // }
+    handleNewCommentChange = (event) => {
+        this.setState({
+            commentInput: event.target.value
+        })
+    }
 
-    componentDidMount(){
+    fetchAllComments(){
         fetch(comments)
         .then(resp => resp.json())
         .then(data =>
@@ -51,18 +51,36 @@ export class PollCard extends Component {
         )
     }
 
+    componentDidMount(){
+        this.fetchAllComments()
+    }
+
+    //----------------------------NEED THIS DO NOT DELETE----------------------------------------------------------------------------
+        componentDidUpdate = (prevState) => {
+         if(prevState.allComments !== this.state.allComments){
+            this.fetchAllComments()
+            }
+        }
+
+    //--------------------------------------------------------------------------------------------------------
+
     render() {
         // console.log(this.props.allUsers)
+        // console.log(this.props.poll)
         return (
             <div>
-               <h1 className='polls'>{this.props.poll.message}</h1><br></br>
+                <h1 className='polls'>{this.props.poll.message}<br></br>
+                    <button name='yay' onClick={this.props.handleVote}>Yay</button>{this.props.poll.yay}
+                    <button name='nay' onClick={this.props.handleVote}>Nay</button>{this.props.poll.nay}
+                </h1><br></br>
+
                {this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
                     <div className='comment'>
                         <p>{comment.content}</p>
-                        <p>-{this.props.allUsers.find(user => user.id === comment.user_id).name}</p>
+                        <p>-{this.props.allUsers.find(user => user.id === comment.user_id).username}</p>
                     </div>
                 )}
-                <CreateComment currentPoll={this.props.currentPoll} commentInput={this.state.commentInput} handleCommentSubmit={this.handleCommentSubmit} handleNewCommentChange={this.handleNewCommentChange} />
+                <CreateComment currentPoll={this.props.currentPoll} currentUser={this.props.currentUser} handleCommentSubmit={this.handleCommentSubmit} handleNewCommentChange={this.handleNewCommentChange}  />
                 <Button variant="contained" color="link" onClick={this.props.clearPollClick} >Back</Button>
             </div>
         )

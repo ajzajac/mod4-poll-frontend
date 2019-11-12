@@ -4,9 +4,9 @@ const comments = `http://localhost:3000/comments`
 
 export default class CreateComment extends Component{
 
-    // state = {
-    //     commentInput: ''
-    // }
+    state = {
+        commentInput: ''
+    }
 
     // handleCommentSubmit = (event) => {
     //     event.preventDefault();
@@ -18,15 +18,11 @@ export default class CreateComment extends Component{
     //         },
     //         body: JSON.stringify({
     //             content: this.state.commentInput,
-    //             // user_id: this.props.currentUser.id,
-    //             user_id: 1, 
+    //             user_id: this.props.currentUser.id,
     //             poll_id: this.props.currentPoll.id,
     //         })
     //     })
 
-    //     this.setState({
-    //         commentInput: ''
-    //     })
     // }
 
     // handleNewCommentChange = (event) => {
@@ -34,6 +30,11 @@ export default class CreateComment extends Component{
     //         commentInput: event.target.value
     //     })
     // }
+
+    // componentDidUpdate = (prevProps, prevState) => {
+    //     console.log('this', this.props)
+    //     console.log('prev', prevProps)
+    //   }
 
     render(){
         // console.log(this.state.commentInput)

@@ -22,15 +22,17 @@ class App extends React.Component {
     currentUser: null,
   }
 
-  componentDidMount(){
+  fetchAllPolls(){
     fetch(polls)
-      .then(resp => resp.json())
-      .then(data => {
-        this.setState({
-          allPolls: [...data]
+    .then(resp => resp.json())
+    .then(data => {
+      this.setState({
+        allPolls: [...data]
       })
     })
+  }
 
+  fetchAllUsers(){
     fetch(users)
       .then(resp => resp.json())
       .then(data => {
@@ -38,15 +40,32 @@ class App extends React.Component {
           allUsers: [...data]
       })
     })
-
   }
+
+  componentDidMount(){
+   
+    this.fetchAllPolls()
+    this.fetchAllUsers()
+    
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    // console.log('PREVOIUS', prevProps, prevState)
+    // console.log("CURRENT", this.props, this.state)
+    if(prevProps.location.pathname === '/newpoll' && this.props.location.pathname === '/polls'){
+      this.fetchAllPolls()
+    }
+    // compare prevProps location path and this.props.location path and then do the fetch again 
+  }
+
+
 
   setUser = (user) => {
     // event.preventDefault();
     this.setState({
       currentUser: user
     })
-    console.log(this.state.currentUser)
+    // console.log(this.state.currentUser)
   }
   
   render(){
@@ -57,8 +76,8 @@ class App extends React.Component {
         <Title />
           <Switch>
             <Route exact path='/'/>
-            <Route exact path='/newpoll' component={CreatePoll} />
-            <Route exact path='/polls' render={(routerProps) => <PollList allPolls={this.state.allPolls} allUsers={this.state.allUsers} {...routerProps} /> } />
+            <Route exact path='/newpoll' render={(routerProps) => <CreatePoll currentUser={this.state.currentUser} {...routerProps} /> } />
+            <Route exact path='/polls' render={(routerProps) => <PollList allPolls={this.state.allPolls} allUsers={this.state.allUsers} currentUser={this.state.currentUser} {...routerProps} /> } />
             <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} {...routerProps} /> } />
             <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} {...routerProps} /> } />
           </Switch>
