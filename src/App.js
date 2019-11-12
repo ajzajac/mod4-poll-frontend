@@ -8,8 +8,44 @@ import { Router, Route, Switch } from 'react-router-dom';
 import Login from './Login'
 import Signup from './Signup'
 
+const polls = `http://localhost:3000/polls`
+const users = `http://localhost:3000/users`
+const comments = `http://localhost:3000/comments`
 
 class App extends React.Component {
+
+  state = {
+    allPolls: [],
+    allUsers: [],
+    currentUser: {}
+  }
+
+  componentDidMount(){
+    fetch(polls)
+    .then(resp => resp.json())
+    .then(data => {
+      this.setState({
+          allPolls: [...data]
+      })
+    })
+
+    fetch(users)
+    .then(resp => resp.json())
+    .then(data => {
+      this.setState({
+          allUsers: [...data]
+      })
+    })
+
+  }
+
+  setUser = (user) => {
+    // event.preventDefault();
+    this.setState({
+      currentUser: user
+    })
+    console.log(this.state.currentUser)
+  }
   
   render(){
   return (
@@ -28,6 +64,15 @@ class App extends React.Component {
         </Router> */}
 
         <NavBar />
+          <Switch>
+            <Route exact path='/' />
+            <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} {...routerProps} /> } />
+            <Route exact path='/login' component={Login} />
+          </Switch>
+
+          <MainContainer allPolls={this.state.allPolls} allUsers={this.state.allUsers} />
+
+          {/* {console.log(this.state.allUsers)} */}
         
     </div>
   )}
