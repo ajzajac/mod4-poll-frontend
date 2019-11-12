@@ -2,46 +2,61 @@ import React, { Component } from 'react'
 
 const users = `http://localhost:3000/users`
 
-export class Signup extends Component {
-
+class Signup extends React.Component{
     state = {
-        name: "",
-        money: 0
+      username: "",
     }
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-        fetch(users, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                name: this.state.name,
-                money: this.state.money
-            })
-        })
-    }
-
+  
     handleChange = (event) => {
-        this.setState({
-            name: event.target.value
-        })
+      this.setState({
+        [event.target.name]: event.target.value
+      })
     }
-    
-    render() {
-        return (
-            <div className='wrapper'>
-            <div className='input' >
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.value} onChange={this.handleChange} placeholder='Name' /><br></br>
-                    <input type="submit" value="Sign up" />
+  
+    handleSubmit = (e) => {
+      e.preventDefault()
+      if(this.state.password === this.state.passwordConfirmation){
+        fetch(`http://localhost:3000/signup`,{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'Accept': "application/json"
+          },
+          body: JSON.stringify({
+            username: this.state.username,
+            
+          })
+        })
+          .then(res => res.json())
+          .then(response => {
+            if (response.errors){
+              alert(response.errors)
+            } else {
+             
+              this.props.setUser(response.user)
+              localStorage.token = response.token
+          
+            }
+          })
+        
+      } else {
+        alert('You messed up. Try again. Get better at typing.')
+      }
+    }
+
+
+render(){
+    return (
+        <div className='wrapper'>
+            <div className="input">
+                <form className="auth-form" onSubmit={this.handleSubmit}>
+                <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" />
+                <button type="submit">Submit</button>
                 </form>
             </div>
-            </div>
-        )
-    }
+        </div>
+    );
+  }
 }
 
-export default Signup
+export default Signup;

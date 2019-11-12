@@ -19,22 +19,22 @@ class App extends React.Component {
   state = {
     allPolls: [],
     allUsers: [],
-    currentUser: {}
+    currentUser: null,
   }
 
   componentDidMount(){
     fetch(polls)
-    .then(resp => resp.json())
-    .then(data => {
-      this.setState({
+      .then(resp => resp.json())
+      .then(data => {
+        this.setState({
           allPolls: [...data]
       })
     })
 
     fetch(users)
-    .then(resp => resp.json())
-    .then(data => {
-      this.setState({
+      .then(resp => resp.json())
+      .then(data => {
+        this.setState({
           allUsers: [...data]
       })
     })
@@ -46,34 +46,21 @@ class App extends React.Component {
     this.setState({
       currentUser: user
     })
-    // console.log(this.state.currentUser)
+    console.log(this.state.currentUser)
   }
   
   render(){
+
   return (
     <div className="App">
-      {/* <NavBar /> 
-        <Router>
-          <Switch>
-            <Route path="/login" render={(routerProps) => <Login  {...routerProps}/>} />
-            <Route path="/signup" render={(routerProps) => <Signup  {...routerProps}/>} />
-            <Route path="/" render={(routerProps) => <div><h1>Everybody Votes</h1></div>} />
-
-            <Route path="/login" component={<Login />} />
-            <Route path="/signup" component={<Signup />} />
-            <Route path="/" render={<div><h1>Everybody Votes</h1></div>} />
-          </Switch>
-        </Router> */}
-
-
-        <NavBar />
+        <NavBar user={this.state.currentUser} setUser={this.setUser} />
         <Title />
           <Switch>
             <Route exact path='/'/>
             <Route exact path='/newpoll' component={CreatePoll} />
             <Route exact path='/polls' render={(routerProps) => <PollList allPolls={this.state.allPolls} allUsers={this.state.allUsers} {...routerProps} /> } />
             <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} {...routerProps} /> } />
-            <Route exact path='/login' component={Login} />
+            <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} {...routerProps} /> } />
           </Switch>
 
           {/* <MainContainer allPolls={this.state.allPolls} allUsers={this.state.allUsers} /> */}
@@ -85,3 +72,5 @@ class App extends React.Component {
   }
 
 export default App;
+
+
