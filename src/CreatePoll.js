@@ -106,11 +106,13 @@ export default class CreatePoll extends Component{
     }
 
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         return(
-            <div className='input'>
+            <div className='input' style={{"height": 250}}>
+                 <h1>Create A New Poll Question</h1>
                  <form onSubmit={this.handlePollSubmit}>
-                    <input type="text" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll message' /><br></br>
+                    {/* <input type="text" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll message' /><br></br> */}
+                    <textarea cols="50" rows="7" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll message'></textarea><br></br>
                     {/* <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option1' value={this.state.option1} /><br></br> 
                     <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option2' value={this.state.option2} /><br></br> 
                     <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option3' value={this.state.option3} /><br></br> 

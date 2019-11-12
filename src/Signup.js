@@ -47,10 +47,11 @@ class Signup extends React.Component{
 
 render(){
     return (
-        <div className='wrapper'>
+        <div>
             <div className="input">
+                <h2>Create New Username</h2>
                 <form className="auth-form" onSubmit={this.handleSubmit}>
-                <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" />
+                <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" />&nbsp;&nbsp;
                 <button type="submit">Submit</button>
                 </form>
             </div>

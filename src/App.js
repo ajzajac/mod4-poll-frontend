@@ -73,7 +73,7 @@ class App extends React.Component {
   return (
     <div className="App">
         <NavBar user={this.state.currentUser} setUser={this.setUser} />
-        <Title />
+        {/* <Title /> */}
           <Switch>
             <Route exact path='/'/>
             <Route exact path='/newpoll' render={(routerProps) => <CreatePoll currentUser={this.state.currentUser} {...routerProps} /> } />

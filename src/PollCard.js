@@ -51,22 +51,36 @@ export class PollCard extends Component {
         )
     }
 
+    // addComment = () => {
+    //     fetch(comments, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+
+    //         })
+    //     })
+    // }
+
     componentDidMount(){
         this.fetchAllComments()
     }
 
     //----------------------------NEED THIS DO NOT DELETE----------------------------------------------------------------------------
-        componentDidUpdate = (prevState) => {
-         if(prevState.allComments !== this.state.allComments){
-            this.fetchAllComments()
-            }
-        }
+        // componentDidUpdate = (prevState) => {
+        //  if(prevState.allComments !== this.state.allComments){
+        //     this.fetchAllComments()
+        //     }
+        // }
 
     //--------------------------------------------------------------------------------------------------------
 
     render() {
         // console.log(this.props.allUsers)
         // console.log(this.props.poll)
+        // console.log(this.state.allComments)
         return (
             <div>
                 <h1 className='polls'>{this.props.poll.message}<br></br>

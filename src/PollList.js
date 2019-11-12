@@ -3,6 +3,8 @@ import Poll from './Poll';
 import User from './User'
 import PollCard from './PollCard';
 
+const polls = `http://localhost:3000/polls`
+
 export class PollList extends Component {
    
     state = {
@@ -67,13 +69,29 @@ export class PollList extends Component {
     }
 
     handleVote = (event) => {
-        return this.setState({
+        event.preventDefault();
+        this.setState({
             currentPoll: {
                 ...this.state.currentPoll,
                 [event.target.name]: this.state.currentPoll[event.target.name] + 1
             }
+        }, () => this.patchPollVotes())
+
+    }
+
+    patchPollVotes = () => {
+        fetch(polls + `/${this.state.currentPoll.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                // [event.target.name]: this.state.currentPoll[event.target.name]
+                yay: this.state.currentPoll.yay,
+                nay: this.state.currentPoll.nay
+            })
         })
-        
     }
 
     render() {
