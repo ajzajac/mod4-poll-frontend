@@ -1,12 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import MainContainer from './MainContainer'
+import PollList from './PollList'
 import NavBar from './NavBar'
 import User from './User'
 import { Router, Route, Switch } from 'react-router-dom';
 import Login from './Login'
 import Signup from './Signup'
+import Title from './Title'
+import CreatePoll from './CreatePoll'
 
 const polls = `http://localhost:3000/polls`
 const users = `http://localhost:3000/users`
@@ -44,7 +46,7 @@ class App extends React.Component {
     this.setState({
       currentUser: user
     })
-    console.log(this.state.currentUser)
+    // console.log(this.state.currentUser)
   }
   
   render(){
@@ -63,15 +65,19 @@ class App extends React.Component {
           </Switch>
         </Router> */}
 
+
         <NavBar />
+        <Title />
           <Switch>
-            <Route exact path='/' />
+            <Route exact path='/'/>
+            <Route exact path='/newpoll' component={CreatePoll} />
+            <Route exact path='/polls' render={(routerProps) => <PollList allPolls={this.state.allPolls} allUsers={this.state.allUsers} {...routerProps} /> } />
             <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} {...routerProps} /> } />
             <Route exact path='/login' component={Login} />
           </Switch>
 
-          <MainContainer allPolls={this.state.allPolls} allUsers={this.state.allUsers} />
-
+          {/* <MainContainer allPolls={this.state.allPolls} allUsers={this.state.allUsers} /> */}
+          
           {/* {console.log(this.state.allUsers)} */}
         
     </div>

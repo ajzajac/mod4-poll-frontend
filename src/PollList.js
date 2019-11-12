@@ -3,7 +3,7 @@ import Poll from './Poll';
 import User from './User'
 import PollCard from './PollCard';
 
-export class MainContainer extends Component {
+export class PollList extends Component {
    
     state = {
         currentPoll: null,
@@ -54,13 +54,13 @@ export class MainContainer extends Component {
         if(this.state.currentPoll){
             // console.log(this.props.allUsers)
             return (
-                <PollCard allUsers={this.props.allUsers} poll={this.state.currentPoll} clearPollClick={this.clearPollClick} />
+                <PollCard allUsers={this.props.allUsers} poll={this.state.currentPoll} clearPollClick={this.clearPollClick} currentPoll={this.state.currentPoll} />
             )
         } else{
             return(
                 <div>
                     {this.props.allPolls.map(poll =>
-                        <Poll poll={poll} handlePollClick={this.handlePollClick} />)}
+                        <h6><Poll poll={poll} handlePollClick={this.handlePollClick} /></h6>)}
                 </div>
             )
         }
@@ -77,4 +77,4 @@ export class MainContainer extends Component {
     }
 }
 
-export default MainContainer
+export default PollList

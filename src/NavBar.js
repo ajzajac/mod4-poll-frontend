@@ -16,8 +16,11 @@ function NavBar(props) {
           </Router> */}
 
           <Button variant="contained" color="link" ><Link to='/' >Home</Link></Button>
+          <Button variant="contained" color="link" ><Link to='/polls' >Polls</Link></Button>
+          <Button variant="contained" color="link" ><Link to='/newpoll' >Create Poll</Link></Button>
           <Button variant="contained" color="link" ><Link to='/signup' >Signup</Link></Button>
           <Button variant="contained" color="link" ><Link to='/login' >Login</Link></Button>
+          
 
       </div>
     );

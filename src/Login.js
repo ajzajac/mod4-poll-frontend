@@ -1,15 +1,5 @@
 import React, { Component } from 'react'
 
-const divStyle = {
-    'border-width': 5,
-    'border-style': 'solid',
-    'width': '20%',
-    'margin': 'auto',
-    'margin-bottom': 10,
-    'margin-top': 10,
-    'padding':10
-}
-
 export class Login extends Component {
 
     state = {
@@ -46,8 +36,8 @@ export class Login extends Component {
 
     render() {
         return (
-            <div>
-                <div style={divStyle} >
+            <div className='wrapper'>
+                <div className='input' >
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" value={this.state.value} onChange={this.handleChange} placeholder='Name' /><br></br>
                     <input type="submit" value="Login" />

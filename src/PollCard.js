@@ -1,33 +1,45 @@
 import React, { Component } from 'react';
 // import Comment from './Comment'
 import Button from '@material-ui/core/Button';
+import CreateComment from './CreateComment';
+
 
 const comments = `http://localhost:3000/comments`
-const messageStyle = {
-    'border-width': 5,
-    'border-style': 'solid',
-    'width': '50%',
-    'margin': 'auto',
-    'margin-bottom': 5,
-    'margin-top': 5,
-    'padding':5
-}
-
-const commentsStyle = {
-    'border-width': 5,
-    'border-style': 'solid',
-    'width': '50%',
-    'margin': 'auto',
-    'margin-bottom': 5,
-    'margin-top': 5,
-    'padding':5
-}
 
 export class PollCard extends Component {
 
     state = {
-        allComments: []
+        allComments: [],
+        commentInput: ''
     }
+
+    // handleCommentSubmit = (event) => {
+    //     event.preventDefault();
+    //     fetch(comments, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             content: this.state.commentInput,
+    //             // user_id: this.props.currentUser.id,
+    //             user_id: 1, 
+    //             poll_id: this.props.currentPoll.id,
+    //         })
+    //     })
+        
+    //     this.setState(prevState => ({
+    //         allComments: [...prevState.allComments, this.state.commentInput],
+    //         commentInput: ''
+    //     }))
+    // }
+
+    // handleNewCommentChange = (event) => {
+    //     this.setState({
+    //         commentInput: event.target.value
+    //     })
+    // }
 
     componentDidMount(){
         fetch(comments)
@@ -40,16 +52,17 @@ export class PollCard extends Component {
     }
 
     render() {
-        console.log(this.props.allUsers)
+        // console.log(this.props.allUsers)
         return (
             <div>
-               <h1 style={messageStyle}>{this.props.poll.message}</h1><br></br>
+               <h1 className='polls'>{this.props.poll.message}</h1><br></br>
                {this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
-                    <div style={commentsStyle}>
+                    <div className='comment'>
                         <p>{comment.content}</p>
                         <p>-{this.props.allUsers.find(user => user.id === comment.user_id).name}</p>
                     </div>
                 )}
+                <CreateComment currentPoll={this.props.currentPoll} commentInput={this.state.commentInput} handleCommentSubmit={this.handleCommentSubmit} handleNewCommentChange={this.handleNewCommentChange} />
                 <Button variant="contained" color="link" onClick={this.props.clearPollClick} >Back</Button>
             </div>
         )
