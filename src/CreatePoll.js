@@ -37,7 +37,8 @@ export default class CreatePoll extends Component{
                 message: this.state.message,
                 user_id: this.props.currentUser.id,
                 yay: 0,
-                nay: 0
+                nay: 0,
+                expiration: new Date(document.getElementById('expiration').value)
             })
         })
         // .then(resp => resp.json())
@@ -108,11 +109,12 @@ export default class CreatePoll extends Component{
     render(){
         // console.log(this.props)
         return(
-            <div className='input' style={{"height": 250}}>
+            <div className='input' style={{"height": 280}}>
                  <h1>New Poll Question</h1>
                  <form onSubmit={this.handlePollSubmit}>
                     {/* <input type="text" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll message' /><br></br> */}
                     <textarea cols="35" rows="7" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll Question' className='input-field' ></textarea><br></br>
+                    <label>Expiration: </label><input id='expiration' name='expiration' type='datetime-local' ></input><br></br>
                     {/* <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option1' value={this.state.option1} /><br></br> 
                     <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option2' value={this.state.option2} /><br></br> 
                     <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option3' value={this.state.option3} /><br></br> 

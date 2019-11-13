@@ -190,3 +190,16 @@ a:link {
   margin-bottom: 5px;
   border-radius: 15px;
 }
+
+#myChart {
+  margin:auto;
+  border-width:2px;
+  border-style: solid;
+  padding: 4px;
+  background-color: rgba(245, 245, 245, 0.65);
+  margin-bottom: 8px;
+}
+
+.status{
+  margin-bottom: 3px;
+}
