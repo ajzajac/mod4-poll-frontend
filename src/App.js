@@ -43,24 +43,39 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-   
     this.fetchAllPolls()
     this.fetchAllUsers()
-    
+    if (localStorage.token) {
+      fetch(`http://localhost:3000/auto_login`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.token
+        },
+      })
+      .then(res => res.json())
+      .then(response => {
+        console.log(response)
+        this.setState({
+          currentUser: response.user
+        })
+      })
+    }
+  
   }
 
 // -------------------------------------------NEED THIS DO NOT DELETE----------------------------------------------- //
 
-  componentDidUpdate = (prevProps, prevState) => {
-    // console.log('PREVOIUS', prevProps, prevState)
-    // console.log("CURRENT", this.props, this.state)
-    if(prevProps.location.pathname === '/newpoll' && this.props.location.pathname === '/polls'){
-      this.fetchAllPolls()
-    }
-    else if(prevState.allPolls !== this.state.allPolls){
-      this.fetchAllPolls()
-    }
-  }
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   // console.log('PREVOIUS', prevProps, prevState)
+  //   // console.log("CURRENT", this.props, this.state)
+  //   if(prevProps.location.pathname === '/newpoll' && this.props.location.pathname === '/polls'){
+  //     this.fetchAllPolls()
+  //   }
+  //   else if(prevState.allPolls !== this.state.allPolls){
+  //     this.fetchAllPolls()
+  //   }
+  // }
     // compare prevProps location path and this.props.location path and then do the fetch again 
 
 // -------------------------------------------NEED THIS DO NOT DELETE----------------------------------------------- //
