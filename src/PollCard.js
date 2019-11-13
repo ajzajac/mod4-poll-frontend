@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import Comment from './Comment'
 import Button from '@material-ui/core/Button';
 import CreateComment from './CreateComment';
-
+// import StackedBarChart from './StackedBarChart'
 
 const comments = `http://localhost:3000/comments`
 
@@ -77,7 +77,7 @@ export class PollCard extends Component {
 
     // //--------------------------------------------------------------------------------------------------------
 
-    render() {
+    render() { 
         // console.log(this.props.allUsers)
         // console.log(this.props)
         // console.log(this.props.allComments)
@@ -85,6 +85,7 @@ export class PollCard extends Component {
                 <div>
                     <h1 className='pollsTitle'>{this.props.poll.message}<br></br>
                         <button className='voteBtns' name='yay' onClick={this.props.handleVote}>Yay</button> {this.props.poll.yay} - {this.props.poll.nay} <button className='voteBtns' name='nay' onClick={this.props.handleVote}>Nay</button>
+                        
                     </h1><br></br>
 
                 {this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
@@ -92,6 +93,9 @@ export class PollCard extends Component {
                         <div className='commentUser' >
                             <img src='http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png' height='40' width='40' /><br></br>
                             <label>{this.props.allUsers.find(user => user.id === comment.user_id).username}</label>
+
+                            {/* <StackedBarChart />  */}
+
                         </div>
                         <div className='commentContent' >
                             <label>{comment.content}</label>

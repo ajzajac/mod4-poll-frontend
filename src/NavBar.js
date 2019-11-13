@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Link, Router } from 'react-router-dom'
 // import Signup from './Signup';
+import title from './assets/title.png';
 
 function NavBar(props) {
   
@@ -15,8 +16,7 @@ function NavBar(props) {
                 </Button>
             </Link>
           </Router> */}
-          <Link to='/' className='logo' ><img src='http://r70.cooltext.com/rendered/cooltext341185200378755.png' height='50'></img></Link>
-          
+          <Link to='/' className='logo' ><img src={title} height='50'></img></Link>
       
           <Link className="linkto" to='/polls' ><Button variant="contained" color="link" >Polls</Button></Link> &nbsp;&nbsp;&nbsp;
           <Link className="linkto" to='/newpoll' ><Button variant="contained" color="link" >Create Poll</Button></Link>&nbsp;&nbsp;&nbsp;
