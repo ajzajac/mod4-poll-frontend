@@ -46,45 +46,6 @@ export default class CreatePoll extends Component{
             this.props.history.push('/polls')
         })
 
-        // fetch(votes, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         Accept: 'application/json'
-        //     },
-        //     body:JSON.stringify({
-        //         option: this.state.option1,
-        //         // poll_id: this.props.currentPoll.id,
-        //         user_id: this.props.currentUser.id
-        //     })
-        // })
-
-        // fetch(votes, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         Accept: 'application/json'
-        //     },
-        //     body:JSON.stringify({
-        //         option: this.state.option2,
-        //         // poll_id: this.props.currentPoll.id,
-        //         user_id: this.props.currentUser.id
-        //     })
-        // })
-
-        // fetch(votes, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         Accept: 'application/json'
-        //     },
-        //     body:JSON.stringify({
-        //         option: this.state.option3,
-        //         // poll_id: this.props.currentPoll.id,
-        //         user_id: this.props.currentUser.id
-        //     })
-        // })
-
     }
 
     handleOptionChange = (event) => {
