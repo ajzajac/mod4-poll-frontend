@@ -41,6 +41,7 @@ html {
   width: 90%;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
 }
 
 .logo{
@@ -65,12 +66,13 @@ a:link {
   border-style: solid;
   width: 25%;
   margin: auto;
-  margin-top: 8px;
+  margin-top: 15px;
   margin-bottom: 8px;
   padding: 2px;
   height: 150px;
   background-color: rgba(245, 245, 245, 0.65);
   box-shadow: 3px 3px 3px firebrick;
+  border-radius: 15px;
 }
 
 .input-field{
@@ -89,6 +91,7 @@ a:link {
   margin-top: 5px;
   margin-bottom: 5px;
   transition: transform 0.3s;
+  border-radius: 15px;
 }
 
 .polls:hover{
@@ -106,6 +109,7 @@ a:link {
   border-color: black;
   margin-top: 5px;
   margin-bottom: 5px;
+  border-radius: 15px;
 }
 
 .title{
@@ -118,6 +122,7 @@ a:link {
   font-size: 20px;
   font-variant: small-caps;
   background-color: rgba(245, 245, 245, 0.75);
+  border-radius: 15px;
 }
 
 .comment{
@@ -128,7 +133,7 @@ a:link {
   margin:auto;
   box-shadow: 3px 3px 3px firebrick;
   margin-top: 3px;
-  margin-bottom: 15px;
+  margin-bottom: 7px;
   display: flex;
   background-color: firebrick;
 }
@@ -170,6 +175,7 @@ a:link {
   margin-top: 5px;
   background-color: rgba(245, 245, 245, 0.65);
   box-shadow: 3px 3px 3px firebrick;
+  border-radius: 15px;
 }
 
 .profilePolls{
@@ -182,5 +188,5 @@ a:link {
   border-color: black;
   margin-top: 5px;
   margin-bottom: 5px;
-  
+  border-radius: 15px;
 }
