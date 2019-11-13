@@ -56,7 +56,7 @@ export class PollList extends Component {
         if(this.state.currentPoll){
             // console.log(this.props.allUsers)
             return (
-                <PollCard allUsers={this.props.allUsers} poll={this.state.currentPoll} clearPollClick={this.clearPollClick} currentPoll={this.state.currentPoll} currentUser={this.props.currentUser} handleVote={this.handleVote} />
+                <PollCard allUsers={this.props.allUsers} poll={this.state.currentPoll} clearPollClick={this.clearPollClick} currentPoll={this.state.currentPoll} currentUser={this.props.currentUser} handleVote={this.handleVote} allComments={this.props.allComments} handleNewCommentChange={this.props.handleNewCommentChange} commentInput={this.props.commentInput} />
             )
         } else{
             return(
@@ -97,11 +97,11 @@ export class PollList extends Component {
     render() {
         // console.log(this.state.currentPoll)
         return (
-            
             <div>
-               {this.renderPolls()}
-               {/* {this.props.allPolls.map(poll =>{
-               return <Poll handlePollClick={this.handlePollClick} poll={poll} />})}    */}
+                <h1 className='pollHeader' hidden={this.state.currentPoll? true: false} >Polls</h1>
+                {this.renderPolls()}
+                {/* {this.props.allPolls.map(poll =>{
+                return <Poll handlePollClick={this.handlePollClick} poll={poll} />})}    */}
             </div>
         )
     }

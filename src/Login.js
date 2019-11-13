@@ -27,19 +27,19 @@ class Login extends React.Component{
     .then(response => {
         this.props.setUser(response.user)
         localStorage.token = response.token
-       
       }
     )
+    .then(this.props.history.push('/polls'))
 }
 
 render(){
     return (
         <div >
             <div className="input">
-                <h2>Log In With Your Username</h2>
+                <h1>User Log In</h1>
                 <form className="auth-form" onSubmit={this.handleSubmit}>
-                <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" /> &nbsp;
-                <button type="submit">Submit</button>
+                <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field'  /> &nbsp;
+                <button type="submit" className='input-field' >Submit</button>
                 </form>
             </div>
         </div>

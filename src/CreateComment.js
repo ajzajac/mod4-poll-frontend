@@ -36,6 +36,7 @@ export default class CreateComment extends Component{
     //     console.log('prev', prevProps)
     //   }
 
+
     render(){
         // console.log(this.state.commentInput)
         // console.log(this.props.currentPoll)
@@ -45,9 +46,9 @@ export default class CreateComment extends Component{
                 <form onSubmit={this.props.handleCommentSubmit}>
                     {/* <input type="text" value={this.props.commentInput} onChange={this.props.handleNewCommentChange} 
                     placeholder='Leave a comment...' /><br></br> */}
-                    <textarea cols="40" rows="4" value={this.props.commentInput} onChange={this.props.handleNewCommentChange} 
-                    placeholder='Leave a comment...'> </textarea><br></br>
-                    <input type="submit" value="Submit" />
+                    <textarea cols="40" rows="3" value={this.props.commentInput} onChange={this.props.handleNewCommentChange} 
+                    placeholder='Leave a comment...' className='input-field' > </textarea><br></br>
+                    <input type="submit" value="Submit"/>
                 </form>
             </div>
         )

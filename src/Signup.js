@@ -32,12 +32,12 @@ class Signup extends React.Component{
             if (response.errors){
               alert(response.errors)
             } else {
-             
               this.props.setUser(response.user)
               localStorage.token = response.token
-          
+              this.props.history.push('/polls')
             }
           })
+          
         
       } else {
         alert('You messed up. Try again. Get better at typing.')
@@ -49,10 +49,10 @@ render(){
     return (
         <div>
             <div className="input">
-                <h2>Create New Username</h2>
+                <h1>Create New User</h1>
                 <form className="auth-form" onSubmit={this.handleSubmit}>
-                <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" />&nbsp;&nbsp;
-                <button type="submit">Submit</button>
+                <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field' />&nbsp;&nbsp;
+                <button type="submit" className='input-field' >Submit</button>
                 </form>
             </div>
         </div>

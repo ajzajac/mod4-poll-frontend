@@ -68,35 +68,40 @@ export class PollCard extends Component {
         this.fetchAllComments()
     }
 
-    //----------------------------NEED THIS DO NOT DELETE----------------------------------------------------------------------------
-        // componentDidUpdate = (prevState) => {
-        //  if(prevState.allComments !== this.state.allComments){
-        //     this.fetchAllComments()
-        //     }
-        // }
+    // //----------------------------NEED THIS DO NOT DELETE----------------------------------------------------------------------------
+        componentDidUpdate = (prevState) => {
+         if(prevState.allComments !== this.state.allComments){
+            this.fetchAllComments()
+            }
+        }
 
-    //--------------------------------------------------------------------------------------------------------
+    // //--------------------------------------------------------------------------------------------------------
 
     render() {
         // console.log(this.props.allUsers)
-        // console.log(this.props.poll)
-        // console.log(this.state.allComments)
+        // console.log(this.props)
+        // console.log(this.props.allComments)
         return (
-            <div>
-                <h1 className='polls'>{this.props.poll.message}<br></br>
-                    <button name='yay' onClick={this.props.handleVote}>Yay</button>{this.props.poll.yay}
-                    <button name='nay' onClick={this.props.handleVote}>Nay</button>{this.props.poll.nay}
-                </h1><br></br>
+                <div>
+                    <h1 className='pollsTitle'>{this.props.poll.message}<br></br>
+                        <button className='voteBtns' name='yay' onClick={this.props.handleVote}>Yay</button> {this.props.poll.yay} - {this.props.poll.nay} <button className='voteBtns' name='nay' onClick={this.props.handleVote}>Nay</button>
+                    </h1><br></br>
 
-               {this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
+                {this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
                     <div className='comment'>
-                        <p>{comment.content}</p>
-                        <p>-{this.props.allUsers.find(user => user.id === comment.user_id).username}</p>
+                        <div className='commentUser' >
+                            <img src='http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png' height='40' width='40' /><br></br>
+                            <label>{this.props.allUsers.find(user => user.id === comment.user_id).username}</label>
+                        </div>
+                        <div className='commentContent' >
+                            <label>{comment.content}</label>
+                        </div>
                     </div>
-                )}
-                <CreateComment currentPoll={this.props.currentPoll} currentUser={this.props.currentUser} handleCommentSubmit={this.handleCommentSubmit} handleNewCommentChange={this.handleNewCommentChange}  />
-                <Button variant="contained" color="link" onClick={this.props.clearPollClick} >Back</Button>
-            </div>
+                    )}
+                    <CreateComment currentPoll={this.props.currentPoll} currentUser={this.props.currentUser} handleCommentSubmit={this.handleCommentSubmit} handleNewCommentChange={this.handleNewCommentChange} />
+
+                    <Button variant="contained" color="link" onClick={this.props.clearPollClick} >Back</Button>
+                </div>
         )
     }
 }
