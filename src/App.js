@@ -66,16 +66,16 @@ class App extends React.Component {
 
 // -------------------------------------------NEED THIS DO NOT DELETE----------------------------------------------- //
 
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   // console.log('PREVOIUS', prevProps, prevState)
-  //   // console.log("CURRENT", this.props, this.state)
-  //   if(prevProps.location.pathname === '/newpoll' && this.props.location.pathname === '/polls'){
-  //     this.fetchAllPolls()
-  //   }
-  //   else if(prevState.allPolls !== this.state.allPolls){
-  //     this.fetchAllPolls()
-  //   }
-  // }
+  componentDidUpdate = (prevProps, prevState) => {
+    // console.log('PREVOIUS', prevProps, prevState)
+    // console.log("CURRENT", this.props, this.state)
+    if(prevProps.location.pathname === '/newpoll' && this.props.location.pathname === '/polls'){
+      this.fetchAllPolls()
+    }
+    else if(prevState.allPolls !== this.state.allPolls){
+      this.fetchAllPolls()
+    }
+  }
     // compare prevProps location path and this.props.location path and then do the fetch again 
 
 // -------------------------------------------NEED THIS DO NOT DELETE----------------------------------------------- //
@@ -88,11 +88,12 @@ class App extends React.Component {
   }
 
   logOut = () => {
-    this.props.history.push('/polls')
+    this.props.history.push('/login')
     this.setState({
       currentUser: null
     })
     setTimeout(() => alert('Sucessfully Logged Out'), 200)
+    localStorage.clear()
   }
   
   render(){ 

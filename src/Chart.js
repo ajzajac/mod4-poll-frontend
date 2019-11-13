@@ -10,7 +10,7 @@ export default class StackedBarGraph extends Component {
         myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["Yay", 'Nay'],
+                labels: [this.props.option1, this.props.option2],
                 datasets: [{
                     label: 'Votes',
                     data: [props.yay, props.nay],
@@ -36,7 +36,7 @@ export default class StackedBarGraph extends Component {
                 }],
                 yAxes: [{
                     ticks: {
-                    beginAtZero: true
+                        beginAtZero: true
                     }
                 }]
                 }

@@ -8,6 +8,7 @@ export class Poll extends Component {
     }    
 
     render() {
+        // console.log(this.props.poll)
         return (
             <div onClick={() => this.props.handlePollClick(this.props.poll)} className='polls' >
                 {/* <div  > */}
@@ -18,5 +19,5 @@ export class Poll extends Component {
         )
     }
 }
-
+ 
 export default Poll

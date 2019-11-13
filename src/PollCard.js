@@ -91,14 +91,16 @@ export class PollCard extends Component {
         // console.log('now', Date.parse(new Date()))
         
         return (
+
             this.dateCompare() ? 
                 <div>
-                    <h1 className='pollsTitle'>{this.props.poll.message}<br></br>
-                        Yays {this.props.poll.yay} - {this.props.poll.nay} Nays<br></br>
-                        Poll closed
-                    </h1><br></br>
+                    <div className='pollsTitle'>
+                        <h1>{this.props.poll.message}</h1>
+                        <h4>{this.props.poll.option1} {this.props.poll.yay} - {this.props.poll.nay} {this.props.poll.option2}<br></br>
+                        Poll closed</h4>
+                    </div><br></br>
 
-                    <Chart yay={this.props.poll.yay} nay={this.props.poll.nay} />
+                    <Chart option1={this.props.poll.option1} option2={this.props.poll.option2} yay={this.props.poll.yay} nay={this.props.poll.nay} />
 
                     {this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
                     <div className='comment'>
@@ -119,13 +121,14 @@ export class PollCard extends Component {
                 :
                 
                 <div>
-                    <h1 className='pollsTitle'>{this.props.poll.message}<br></br>
-                        <button className='voteBtns' name='yay' onClick={this.props.handleVote}>Yay</button> {this.props.poll.yay} - {this.props.poll.nay} <button className='voteBtns' name='nay' onClick={this.props.handleVote}>Nay</button><br></br>
-                        Poll closes: {this.props.poll.expiration.split('T')[0] + ' ' + this.props.poll.expiration.split('T')[1].slice(0,5)}
+                    <div className='pollsTitle'>
+                        <h1>{this.props.poll.message}</h1>
+                        <h4><button className='voteBtns' name='yay' onClick={this.props.handleVote}>{this.props.poll.option1}</button> {this.props.poll.yay} - {this.props.poll.nay} <button className='voteBtns' name='nay' onClick={this.props.handleVote}>{this.props.poll.option2}</button><br></br>
+                        Poll closes: {this.props.poll.expiration.split('T')[0] + ' ' + this.props.poll.expiration.split('T')[1].slice(0,5)}</h4>
                         {/* Poll closes: {this.props.poll.expiration.split('T')[1].split('.')[0].slice(0,5)} */}
-                    </h1><br></br>
+                    </div><br></br>
 
-                    <Chart yay={this.props.poll.yay} nay={this.props.poll.nay} />
+                    <Chart option1={this.props.poll.option1} option2={this.props.poll.option2} yay={this.props.poll.yay} nay={this.props.poll.nay} />
 
                 {this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
                     <div className='comment'>

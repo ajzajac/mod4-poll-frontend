@@ -6,10 +6,11 @@ const votes = `http://localhost:3000/votes`
 export default class CreatePoll extends Component{
 
     state = {
-        message: ''
-        // option1: '',
-        // option2: '',
-        // option3: ''
+        message: '',
+        option1: '',
+        option2: '',
+        
+        // options: {}
     }
 
     handleMessageChange = (event) => {
@@ -38,7 +39,9 @@ export default class CreatePoll extends Component{
                 user_id: this.props.currentUser.id,
                 yay: 0,
                 nay: 0,
-                expiration: new Date(document.getElementById('expiration').value)
+                expiration: new Date(document.getElementById('expiration').value),
+                option1: this.state.option1,
+                option2: this.state.option2
             })
         })
         // .then(resp => resp.json())
@@ -55,20 +58,18 @@ export default class CreatePoll extends Component{
         // this.setState({optionUpdate})
         // console.log(this.state.options)
 
+        // this.setState({
+        //     [event.target.name]: event.target.value
+        // })
+
         this.setState({
             [event.target.name]: event.target.value
         })
 
-        // this.setState({
-        //     options: {
-        //         [event.target.id]: [event.target.value]
-        //     }
-        // })
-        // console.log(event.target.id)
     }
 
     render(){
-        // console.log(this.props)
+        console.log(this.state.options)
         return(
             <div className='input' style={{"height": 280}}>
                  <h1>New Poll Question</h1>
@@ -76,9 +77,9 @@ export default class CreatePoll extends Component{
                     {/* <input type="text" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll message' /><br></br> */}
                     <textarea cols="35" rows="7" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll Question' className='input-field' ></textarea><br></br>
                     <label>Expiration: </label><input id='expiration' name='expiration' type='datetime-local' ></input><br></br>
-                    {/* <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option1' value={this.state.option1} /><br></br> 
+                    <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option1' value={this.state.option1} /><br></br> 
                     <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option2' value={this.state.option2} /><br></br> 
-                    <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option3' value={this.state.option3} /><br></br> 
+                    {/* <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option3' value={this.state.option3} /><br></br> 
                     <input type='button' value='Add option' onClick={this.addOption}></input> */}
                     <input type="submit" value="Submit"/>
                 </form>

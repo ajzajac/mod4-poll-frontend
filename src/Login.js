@@ -31,9 +31,9 @@ class Login extends React.Component{
         // we have the user object!!! store somewhere
         this.props.setUser(response.user)
         localStorage.token = response.token
-      
       }
     })
+    .then(this.props.history.push('./polls'))
 }
 
 render(){

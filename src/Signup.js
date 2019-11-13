@@ -5,6 +5,7 @@ const users = `http://localhost:3000/users`
 class Signup extends React.Component{
     state = {
       username: "",
+      image: ''
     }
   
     handleChange = (event) => {
@@ -15,6 +16,13 @@ class Signup extends React.Component{
   
     handleSubmit = (e) => {
       e.preventDefault()
+
+      const formData = new FormData()
+      formData.append(
+        'imageFile',
+        this.state.image
+      )
+
       if(this.state.password === this.state.passwordConfirmation){
         fetch(`http://localhost:3000/signup`,{
           method: "POST",
@@ -24,7 +32,7 @@ class Signup extends React.Component{
           },
           body: JSON.stringify({
             username: this.state.username,
-            
+            image: formData
           })
         })
           .then(res => res.json())
@@ -44,6 +52,14 @@ class Signup extends React.Component{
       }
     }
 
+    handleFileSelect = (event) => {
+        this.setState({ 
+            image: event.target.files[0]
+        })
+        
+        
+    }
+
 
 render(){
     return (
@@ -52,6 +68,7 @@ render(){
                 <h1>Create New User</h1>
                 <form className="auth-form" onSubmit={this.handleSubmit}>
                 <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field' />&nbsp;&nbsp;
+                <input type='file' onChange={this.handleFileSelect} ></input>
                 <button type="submit" className='input-field' >Submit</button>
                 </form>
             </div>
