@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
 
-const comments = `http://localhost:3000/comments`
-
 export default class CreateComment extends Component{
-
-    state = {
-        commentInput: ''
-    }
 
     // handleCommentSubmit = (event) => {
     //     event.preventDefault();
@@ -36,10 +30,11 @@ export default class CreateComment extends Component{
     //     console.log('prev', prevProps)
     //   }
 
-
     render(){
         // console.log(this.state.commentInput)
         // console.log(this.props.currentPoll)
+        console.log(this.props.allUsers)
+        console.log(this.props.allComments)
         return(
             <div className='input'>
                 <h3>Leave a Comment</h3>

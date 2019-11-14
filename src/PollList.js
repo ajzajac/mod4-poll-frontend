@@ -3,6 +3,8 @@ import Poll from './Poll';
 import User from './User'
 import PollCard from './PollCard';
 import Footer from './Footer'
+import Button from '@material-ui/core/Button';
+import { Link, Router } from 'react-router-dom'
 
 const polls = `http://localhost:3000/polls`
 
@@ -57,13 +59,26 @@ export class PollList extends Component {
         if(this.state.currentPoll){
             // console.log(this.props.allUsers)
             return (
-                <PollCard allUsers={this.props.allUsers} poll={this.state.currentPoll} clearPollClick={this.clearPollClick} currentPoll={this.state.currentPoll} currentUser={this.props.currentUser} handleVote={this.handleVote} allComments={this.props.allComments} handleNewCommentChange={this.props.handleNewCommentChange} commentInput={this.props.commentInput} />
+                <PollCard 
+                    allUsers={this.props.allUsers} 
+                    poll={this.state.currentPoll} 
+                    clearPollClick={this.clearPollClick} 
+                    currentPoll={this.state.currentPoll} 
+                    currentUser={this.props.currentUser} 
+                    handleVote={this.handleVote} 
+                    allComments={this.props.allComments} 
+                    handleNewCommentChange={this.props.handleNewCommentChange} 
+                    commentInput={this.props.commentInput} 
+                    history={this.props.history}
+                />
             )
         } else{
             return(
                 <div>
+                    {this.props.currentUser ? <Link className="linkto" to='/newpoll' ><Button variant="contained" color="link" >Create Poll</Button></Link> : null}
                     {this.props.allPolls.map(poll =>
-                        <h6><Poll poll={poll} handlePollClick={this.handlePollClick} /></h6>)}
+                            <h6><Poll poll={poll} handlePollClick={this.handlePollClick} /></h6>
+                    )}
                 </div>
             )
         }
@@ -96,10 +111,11 @@ export class PollList extends Component {
     }
 
     render() {
-        // console.log(this.state.currentPoll)
+        // console.log(this.props)
         return (
             <div className='pages' >
-                <h1 className='pollHeader' hidden={this.state.currentPoll? true: false} >Polls</h1>
+                
+                <h1 className='pollHeader' hidden={this.state.currentPoll? true: false} >{this.props.header}</h1>
                 {this.renderPolls()}
                 {/* {this.props.allPolls.map(poll =>{
                 return <Poll handlePollClick={this.handlePollClick} poll={poll} />})}    */}

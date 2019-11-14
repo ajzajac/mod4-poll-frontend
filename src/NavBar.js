@@ -19,8 +19,7 @@ function NavBar(props) {
           <Link to='/' className='logo' ><img src={title} height='50'></img></Link>
       
           <Link className="linkto" to='/polls' ><Button variant="contained" color="link" >Polls</Button></Link> &nbsp;&nbsp;&nbsp;
-          <Link className="linkto" to='/newpoll' ><Button variant="contained" color="link" >Create Poll</Button></Link>&nbsp;&nbsp;&nbsp;
-
+          
           {!props.user? 
             <>
               <Link className="linkto" to='/signup' ><Button variant="contained" color="link" >Signup</Button></Link>&nbsp;&nbsp;&nbsp;

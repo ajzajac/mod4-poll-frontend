@@ -40,6 +40,7 @@ class Signup extends React.Component{
           .then(response => {
             if (response.errors){
               alert(response.errors)
+              this.setState({username: ''})
             } else {
               this.props.setUser(response.user)
               localStorage.token = response.token
@@ -62,7 +63,7 @@ render(){
     // console.log(this.state.image)
     return (
         <div>
-            <div className="input">
+            <div className="signupInput">
                 <h1>Create New User</h1>
                 <form className="auth-form" onSubmit={this.handleSubmit}>
                 <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field' />&nbsp;&nbsp;
@@ -110,7 +111,7 @@ render(){
                     )}
                 /> */}
 
-                <button type="submit" className='input-field' >Submit</button>
+                <button type="submit" className='input-field' >Signup</button>
                 </form>
             </div>
         </div>

@@ -60,7 +60,7 @@ html, body {
 
 .logo{
   /* position: relative; */
-  margin-right:18.25%;
+  margin-right:26.5%;
 }
 
 .linkto {
@@ -141,39 +141,44 @@ a:link {
 }
 
 .comment{
-  border-width:1.5px;
-  border-style: solid;
+  /* border-width:1.5px;
+  border-style: solid; */
   width: 35%;
-  border-color: firebrick;
+  /* border-color: cornflowerblue; */
   margin:auto;
-  box-shadow: 3px 3px 3px firebrick;
-  margin-top: 3px;
-  margin-bottom: 7px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   display: flex;
-  background-color: firebrick;
+  /* background-color: cornflowerblue; */
+  /* padding:2px; */
 }
 
 .commentUser{
-  border-width:1.5px;
-  border-style: solid;
-  margin: 2px;
-  margin-right: 1px;
-  width: 20%;
+  /* border-width:1.5px;
+  border-style: solid; */
+  /* margin: 2px; */
+  margin-right: 10px;
+  width: 15%;
   padding: 5px;
-  border-color: firebrick;
-  background-color: rgba(245, 245, 245, 0.75);
+  /* border-color: papayawhip; */
+  background-color: rgba(245, 245, 245, 0.95);
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px cornflowerblue;
 }
 
 .commentContent {
-  border-width:1.5px;
-  border-style: solid;
-  margin: 2px;
+  /* border-width:1.5px;
+  border-style: solid; */
+  /* margin: 2px; */
   margin-left: 1px;
   padding: 5px;
-  width: 75%;
-  border-color: firebrick;
+  width: 85%;
+  /* border-color: papayawhip; */
   text-align: left;
-  background-color: rgba(245, 245, 245, 0.75);
+  background-color: rgba(245, 245, 245, 0.95);
+  overflow-x: auto;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px cornflowerblue;
 }
 
 .voteBtns{
@@ -188,6 +193,7 @@ a:link {
   width: 50%;
   margin:auto;
   margin-top: 5px;
+  margin-bottom: 20px;
   background-color: rgba(245, 245, 245, 0.65);
   box-shadow: 3px 3px 3px firebrick;
   border-radius: 15px;
@@ -231,3 +237,28 @@ a:link {
 .pages{
   margin-top: 65px;
 } */
+
+.winnerVote{
+  color: green;
+  font-weight: bold
+}
+
+.loserVote{
+  color: red;
+}
+
+.signupInput{
+  border-width: 3;
+  border-style: solid;
+  width: 25%;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  padding: 2px;
+  height: 150px;
+  background-color: rgba(0, 0, 0, 0.65);
+  box-shadow: 3px 3px 3px green;
+  border-radius: 15px;
+  color: floralwhite;
+  border-color:rgba(0, 0, 0, 0.65);
+}

@@ -14,26 +14,37 @@ export class PollCard extends Component {
         commentInput: ''
     }
 
+    logInToComment = () => {
+        this.props.history.push('./login')
+        alert('please log in')
+    }
+
     handleCommentSubmit = (event) => {
         event.preventDefault();
-        fetch(comments, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                content: this.state.commentInput,
-                user_id: this.props.currentUser.id,
-                poll_id: this.props.currentPoll.id,
+
+        !this.props.currentUser ? 
+            // this.props.history.push('./login')
+            this.logInToComment()
+            :
+            
+            fetch(comments, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: this.state.commentInput,
+                    user_id: this.props.currentUser.id,
+                    poll_id: this.props.currentPoll.id,
+                })
             })
-        })
-        .then(
-            this.setState(prevState => ({
-                allComments: [...prevState.allComments, this.state.commentInput],
-            }))
-        )
-        
+            .then(
+                this.setState({
+                    commentInput: ''
+                })
+            )
+
     }
 
     handleNewCommentChange = (event) => {
@@ -74,31 +85,41 @@ export class PollCard extends Component {
     }
 
     // //----------------------------NEED THIS DO NOT DELETE----------------------------------------------------------------------------
-        componentDidUpdate = (prevState) => {
-         if(prevState.allComments !== this.state.allComments){
+        componentDidUpdate = (nextState) => {
+         if(this.shouldComponentUpdate(nextState)){
             this.fetchAllComments()
             }
         }
 
+        shouldComponentUpdate(nextState){
+            return nextState.allComments !== this.state.allComments
+        }
+
     // //--------------------------------------------------------------------------------------------------------
 
-    render() { 
-        // console.log(this.props.allUsers)
-        // console.log(this.props)
-        // console.log(this.props.allComments)
-        // console.log(new Date(this.props.poll.expiration))
-        // console.log('exp', Date.parse(this.props.poll.expiration))
-        // console.log(new Date())
-        // console.log('now', Date.parse(new Date()))
+    voteWinner = () => {
         
+    }
+
+    render() { 
         return (
             <>
                 {this.dateCompare() ? 
                     <div>
                         <div className='pollsTitle'>
-                            <h1 style={{'font-size':60}}>{this.props.poll.message}</h1>
-                            <h4>{this.props.poll.option1} {this.props.poll.yay} - {this.props.poll.nay} {this.props.poll.option2}<br></br>
-                            Poll closed</h4>
+                            <label style={{'font-size':60}}>{this.props.poll.message}</label><br></br>
+
+                            <label>
+                                <span style={{'font-weight':'bold'}}>{this.props.poll.option1} </span>
+                                <span className={this.props.poll.yay >= this.props.poll.nay ? 'winnerVote' : 'loserVote'} >{this.props.poll.yay}</span> 
+                                -
+                                <span className={this.props.poll.nay >= this.props.poll.yay ? 'winnerVote' : 'loserVote'} >{this.props.poll.nay} </span>
+
+                                <span style={{'font-weight':'bold'}}>{this.props.poll.option2}</span>
+                                
+                                <br></br>
+                                Poll closed
+                            </label>
                         </div><br></br>
 
                         <Chart option1={this.props.poll.option1} option2={this.props.poll.option2} yay={this.props.poll.yay} nay={this.props.poll.nay} />
@@ -108,7 +129,6 @@ export class PollCard extends Component {
                                 <div className='commentUser' >
                                     <img src='http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png' height='40' width='40' /><br></br>
                                     <label>{this.props.allUsers.find(user => user.id === comment.user_id).username}</label> 
-                                    {/* {console.log(this.props.allUsers)} */}
                                 </div>
                                 <div className='commentContent' >
                                     <label>{comment.content}</label>
@@ -126,7 +146,6 @@ export class PollCard extends Component {
                             <label style={{'font-size':60}}>{this.props.poll.message}</label><br></br>
                             <label ><button className='voteBtns' name='yay' onClick={this.props.handleVote}>{this.props.poll.option1}</button> {this.props.poll.yay} - {this.props.poll.nay} <button className='voteBtns' name='nay' onClick={this.props.handleVote}>{this.props.poll.option2}</button><br></br>
                             Poll closes: {this.props.poll.expiration.split('T')[0] + ' ' + this.props.poll.expiration.split('T')[1].slice(0,5)}</label>
-                            {/* Poll closes: {this.props.poll.expiration.split('T')[1].split('.')[0].slice(0,5)} */}
                         </div><br></br>
 
                         <Chart option1={this.props.poll.option1} option2={this.props.poll.option2} yay={this.props.poll.yay} nay={this.props.poll.nay} />
@@ -146,11 +165,10 @@ export class PollCard extends Component {
                     :
                     null
                     }
-                        <CreateComment currentPoll={this.props.currentPoll} currentUser={this.props.currentUser} handleCommentSubmit={this.handleCommentSubmit} handleNewCommentChange={this.handleNewCommentChange} />
+                        <CreateComment currentPoll={this.props.currentPoll} currentUser={this.props.currentUser} allUsers={this.props.allUsers} allComments={this.state.allComments} commentInput={this.state.commentInput} handleCommentSubmit={this.handleCommentSubmit} handleNewCommentChange={this.handleNewCommentChange} />
 
                         <Button variant="contained" color="link" onClick={this.props.clearPollClick} >Back</Button>
                     </div>
-                    
                 }
             </>
         )

@@ -11,6 +11,7 @@ class Login extends React.Component{
       [event.target.name]: event.target.value
     })
   }
+  
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -31,9 +32,10 @@ class Login extends React.Component{
         // we have the user object!!! store somewhere
         this.props.setUser(response.user)
         localStorage.token = response.token
+        this.props.history.push('./polls')
       }
     })
-    .then(this.props.history.push('./polls'))
+    
 }
 
 render(){
@@ -43,7 +45,7 @@ render(){
                 <h1>User Log In</h1>
                 <form className="auth-form" onSubmit={this.handleSubmit}>
                 <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field'  /> &nbsp;
-                <button type="submit" className='input-field' >Submit</button>
+                <button type="submit" className='input-field' >Login</button>
                 </form>
             </div>
         </div>
