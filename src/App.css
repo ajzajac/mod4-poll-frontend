@@ -1,13 +1,26 @@
-html {
-  background-color: floralwhite;
-  height: 200%;
+html, body {
+  /* background-color: floralwhite; */
+  height: 100%;
+
   background-image: url('https://ak8.picdn.net/shutterstock/videos/25718228/thumb/1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;  
+  overflow: scroll;
+  
 }
+
+/* .background{
+  background-image: url('https://ak8.picdn.net/shutterstock/videos/25718228/thumb/1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  background-attachment: fixed;  
+} */
 
 .App {
   text-align: center;
+  height: 100%;
   /* background-color: floralwhite; */
 }
 
@@ -42,11 +55,12 @@ html {
   margin: auto;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 15px;
+  position: sticky;
 }
 
 .logo{
-  position: absolute;
-  left: 4.5%; 
+  /* position: relative; */
+  margin-right:18.25%;
 }
 
 .linkto {
@@ -110,6 +124,7 @@ a:link {
   margin-top: 5px;
   margin-bottom: 5px;
   border-radius: 15px;
+  height: 140px;
 }
 
 .title{
@@ -203,3 +218,16 @@ a:link {
 .status{
   margin-bottom: 3px;
 }
+
+.footer{
+  position: relative;
+  bottom: 0;
+  width:100%;
+  border-top-width: 2px;
+  border-top-style: solid;
+  margin-top: 50px; 
+}
+/* 
+.pages{
+  margin-top: 65px;
+} */

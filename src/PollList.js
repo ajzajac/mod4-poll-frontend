@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Poll from './Poll';
 import User from './User'
 import PollCard from './PollCard';
+import Footer from './Footer'
 
 const polls = `http://localhost:3000/polls`
 
@@ -97,7 +98,7 @@ export class PollList extends Component {
     render() {
         // console.log(this.state.currentPoll)
         return (
-            <div>
+            <div className='pages' >
                 <h1 className='pollHeader' hidden={this.state.currentPoll? true: false} >Polls</h1>
                 {this.renderPolls()}
                 {/* {this.props.allPolls.map(poll =>{

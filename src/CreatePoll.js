@@ -49,7 +49,6 @@ export default class CreatePoll extends Component{
             this.setState({message: ''})
             this.props.history.push('/polls')
         })
-
     }
 
     handleOptionChange = (event) => {
@@ -65,24 +64,26 @@ export default class CreatePoll extends Component{
         this.setState({
             [event.target.name]: event.target.value
         })
-
     }
 
     render(){
-        console.log(this.state.options)
+        // console.log(this.state.options)
         return(
-            <div className='input' style={{"height": 280}}>
-                 <h1>New Poll Question</h1>
-                 <form onSubmit={this.handlePollSubmit}>
-                    {/* <input type="text" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll message' /><br></br> */}
-                    <textarea cols="35" rows="7" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll Question' className='input-field' ></textarea><br></br>
-                    <label>Expiration: </label><input id='expiration' name='expiration' type='datetime-local' ></input><br></br>
-                    <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option1' value={this.state.option1} /><br></br> 
-                    <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option2' value={this.state.option2} /><br></br> 
-                    {/* <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option3' value={this.state.option3} /><br></br> 
-                    <input type='button' value='Add option' onClick={this.addOption}></input> */}
-                    <input type="submit" value="Submit"/>
-                </form>
+            <div>
+                <div className='input' style={{"height": 320}}>
+                    <h1>New Poll Question</h1>
+                    <form onSubmit={this.handlePollSubmit}>
+                        {/* <input type="text" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll message' /><br></br> */}
+                        <textarea cols="35" rows="7" value={this.state.message} onChange={this.handleMessageChange} placeholder='Poll Question' className='input-field' ></textarea><br></br>
+                        <label>Expiration: </label><input id='expiration' name='expiration' type='datetime-local' ></input><br></br>
+                        <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option1' value={this.state.option1} /><br></br> 
+                        <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option2' value={this.state.option2} /><br></br> 
+                        {/* <input type="text" placeholder='Option' onChange={this.handleOptionChange} name='option3' value={this.state.option3} /><br></br> 
+                        <input type='button' value='Add option' onClick={this.addOption}></input> */}
+                        <input type="submit" value="Submit"/>
+                    </form>
+                    
+                </div>
             </div>
         )
     }

@@ -9,6 +9,7 @@ import Login from './Login'
 import Signup from './Signup'
 import CreatePoll from './CreatePoll'
 import Profile from './Profile'
+import Footer from './Footer'
 
 const polls = `http://localhost:3000/polls`
 const users = `http://localhost:3000/users`
@@ -55,13 +56,12 @@ class App extends React.Component {
       })
       .then(res => res.json())
       .then(response => {
-        console.log(response)
+        // console.log(response)
         this.setState({
           currentUser: response.user
         })
       })
     }
-  
   }
 
 // -------------------------------------------NEED THIS DO NOT DELETE----------------------------------------------- //
@@ -99,7 +99,9 @@ class App extends React.Component {
   render(){ 
     // console.log(this.state.currentUser)
   return (
-    <div className="App">
+    // <div className='background'>
+      <div className="App">
+  
         <NavBar user={this.state.currentUser} setUser={this.setUser} logOut={this.logOut} />
         {/* <Title /> */}
           <Switch>
@@ -114,8 +116,10 @@ class App extends React.Component {
           {/* <MainContainer allPolls={this.state.allPolls} allUsers={this.state.allUsers} /> */}
           
           {/* {console.log(this.state.allUsers)} */}
-        
-    </div>
+
+          <Footer />
+        </div>
+    // </div>
   )}
   }
 

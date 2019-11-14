@@ -7,7 +7,7 @@ import title from './assets/title.png';
 function NavBar(props) {
   
     return (
-      <div className="nav-bar">
+      <div className="nav-bar" fixed='top' >
           {/* <Router>
             <Link to="/signup"><Button color="default" ><div>Sign Up</div></Button></Link>
             <Link to="/profile">
@@ -28,13 +28,10 @@ function NavBar(props) {
             </>
             :
             <>
+              <Button className="linkto" variant="contained" color="link" onClick={props.logOut} style={{'margin-right':12}} >Logout</Button>
               <Link className="linkto" to='/profile' ><Button variant="contained" color="primary" >{props.user.username}</Button></Link>&nbsp;&nbsp;&nbsp;
-              <Button variant="contained" color="link" onClick={props.logOut}>Logout</Button>
             </>
           }
-          
-          
-
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Footer from './Footer'
 
 class Login extends React.Component{
   state = {
