@@ -13,13 +13,13 @@ export default class Profile extends React.Component{
     // }
 
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         return(
+            
             <div className='profile'>
                 {/* <h1 className='commentUser' style={{'margin':'auto', 'margin-top':10}}>{props.user.username}</h1> */}
-                <h1 className='pollHeader' style={{'margin-top': 10, 'font-variant': 'small-caps', 'width':'45%'}}>{this.props.user.username}'s Profile</h1>
-                <img src={this.props.user.image} />
-                {/* {console.log(this.props.user)} */}
+                <h1 className='pollHeader' style={{'margin-top': 10, 'font-variant': 'small-caps', 'width':'40%'}}>{this.props.user.username}'s Profile</h1>
+                <img src='http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png' height='100' width='100' />
                 {/* <h2 className='pollHeader' style={{'margin-top':10,'margin-bottom':10, 'width':'20%'}}>My Created Polls</h2> */}
                 {/* {this.props.allPolls.filter(poll => poll.user_id === this.props.user.id).map(poll => 
                     <h4 className='profilePolls' style={{'padding':3}}>

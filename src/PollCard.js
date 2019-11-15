@@ -16,7 +16,7 @@ export class PollCard extends Component {
 
     logInToComment = () => {
         this.props.history.push('./login')
-        alert('please log in')
+        setTimeout(() => alert('Please Log in to Comment'), 200)
     }
 
     handleCommentSubmit = (event) => {
@@ -97,80 +97,141 @@ export class PollCard extends Component {
 
     // //--------------------------------------------------------------------------------------------------------
 
-    voteWinner = () => {
-        
-    }
-
     render() { 
         return (
+            
             <>
-                {this.dateCompare() ? 
-                    <div>
-                        <div className='pollsTitle'>
-                            <label style={{'font-size':60}}>{this.props.poll.message}</label><br></br>
+                <div className='pollsTitle'>
 
-                            <label>
-                                <span style={{'font-weight':'bold'}}>{this.props.poll.option1} </span>
-                                <span className={this.props.poll.yay >= this.props.poll.nay ? 'winnerVote' : 'loserVote'} >{this.props.poll.yay}</span> 
-                                -
-                                <span className={this.props.poll.nay >= this.props.poll.yay ? 'winnerVote' : 'loserVote'} >{this.props.poll.nay} </span>
+                    <h1 class='actualPollTitle'>
+                        {this.props.poll.message}
+                    </h1>
+                </div>
 
-                                <span style={{'font-weight':'bold'}}>{this.props.poll.option2}</span>
-                                
-                                <br></br>
-                                Poll closed
-                            </label>
-                        </div><br></br>
+                    {/* <label>
+                        <span className={this.dateCompare() ? 'bold' : null } >{this.props.poll.option1}</span>&nbsp;&nbsp;&nbsp;
+                        <span className={this.dateCompare() ? 'winnerVote' : null } >{this.props.poll.yay}</span> - &nbsp;
+                        <span className={this.dateCompare() ? 'loserVote' : null } >{this.props.poll.nay}</span>&nbsp;&nbsp;&nbsp;
+                        <span className={this.dateCompare() ? 'bold' : null } >{this.props.poll.option2}</span>
+                    </label><br></br> */}
 
-                        <Chart option1={this.props.poll.option1} option2={this.props.poll.option2} yay={this.props.poll.yay} nay={this.props.poll.nay} />
+                <div class={this.dateCompare()? 'pollCardStatusClosed' : 'pollCardStatus'} >
+                    <label>
+                        Poll {this.dateCompare()? 'Closed' : 'Closes: ' + this.props.poll.expiration.split('T')[0] + ' ' + this.props.poll.expiration.split('T')[1].slice(0,5)}
+                    </label>
+                </div>
 
-                        {this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
-                            <div className='comment'>
-                                <div className='commentUser' >
-                                    <img src='http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png' height='40' width='40' /><br></br>
-                                    <label>{this.props.allUsers.find(user => user.id === comment.user_id).username}</label> 
-                                </div>
-                                <div className='commentContent' >
-                                    <label>{comment.content}</label>
-                                </div>
+                {this.dateCompare()? 
+                        null :
+                        <>
+                            <div className='voteBtnDiv' >
+                                <p>CAST YOUR VOTE</p>
+                            {/* </div> */}
+
+                            {/* <div className='voteBtnDiv'> */}
+                            {/* <div style={{'width':'100%'}}> */}
+                                <button className='voteBtns' name='yay' onClick={this.props.handleVote}>{this.props.poll.option1}</button><br></br>
+                                <button className='voteBtns' name='nay' onClick={this.props.handleVote}>{this.props.poll.option2}</button>
                             </div>
-                        )}
-
-                        <Button variant="contained" color="link" onClick={this.props.clearPollClick} >Back</Button>
-                    </div>
-
-                    :
-                    
-                    <div>
-                        <div className='pollsTitle'>
-                            <label style={{'font-size':60}}>{this.props.poll.message}</label><br></br>
-                            <label ><button className='voteBtns' name='yay' onClick={this.props.handleVote}>{this.props.poll.option1}</button> {this.props.poll.yay} - {this.props.poll.nay} <button className='voteBtns' name='nay' onClick={this.props.handleVote}>{this.props.poll.option2}</button><br></br>
-                            Poll closes: {this.props.poll.expiration.split('T')[0] + ' ' + this.props.poll.expiration.split('T')[1].slice(0,5)}</label>
-                        </div><br></br>
-
-                        <Chart option1={this.props.poll.option1} option2={this.props.poll.option2} yay={this.props.poll.yay} nay={this.props.poll.nay} />
-
-                    {this.state.allComments !== [] ?
-                        this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
-                            <div className='comment'>
-                                <div className='commentUser' >
-                                    <img src='http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png' height='40' width='40' /><br></br>
-                                    <label>{this.props.allUsers.find(user => user.id === comment.user_id).username}</label> 
-                                </div>
-                                <div className='commentContent' >
-                                    <label>{comment.content}</label>
-                                </div>
-                            </div>
-                        )
-                    :
-                    null
+                        </>
                     }
-                        <CreateComment currentPoll={this.props.currentPoll} currentUser={this.props.currentUser} allUsers={this.props.allUsers} allComments={this.state.allComments} commentInput={this.state.commentInput} handleCommentSubmit={this.handleCommentSubmit} handleNewCommentChange={this.handleNewCommentChange} />
 
-                        <Button variant="contained" color="link" onClick={this.props.clearPollClick} >Back</Button>
-                    </div>
+                <Chart option1={this.props.poll.option1} option2={this.props.poll.option2} yay={this.props.poll.yay} nay={this.props.poll.nay} />
+
+                <div>
+                    
+                {this.state.allComments !== [] ?
+                    this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
+                        <div className='comment'>
+                            <div className='commentUser' >
+                                <img src='http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png' height='40' width='40' /><br></br>
+                                <label>{this.props.allUsers.find(user => user.id === comment.user_id).username}</label> 
+                            </div>
+                            <div className='commentContent' >
+                                <label>{comment.content}</label>
+                            </div>
+                        </div>
+                    )
+                :
+                null
                 }
-            </>
+
+                {this.dateCompare()? null: 
+                    <CreateComment currentPoll={this.props.currentPoll} currentUser={this.props.currentUser} allUsers={this.props.allUsers} allComments={this.state.allComments} commentInput={this.state.commentInput} handleCommentSubmit={this.handleCommentSubmit} handleNewCommentChange={this.handleNewCommentChange} />
+                }
+
+                <Button variant="contained" color="link" onClick={this.props.clearPollClick} >Back</Button>
+
+                </div>
+
+
+            {/* {this.dateCompare() ? 
+                <div>
+                    <div className='pollsTitle'>
+                        <label class='actualPollTitle' >{this.props.poll.message}</label><br></br>
+
+                        <label>
+                            <span style={{'font-weight':'bold'}}>{this.props.poll.option1} </span>
+                            <span className={this.props.poll.yay >= this.props.poll.nay ? 'winnerVote' : 'loserVote'} >{this.props.poll.yay}</span> 
+                            -
+                            <span className={this.props.poll.nay >= this.props.poll.yay ? 'winnerVote' : 'loserVote'} >{this.props.poll.nay} </span>
+
+                            <span style={{'font-weight':'bold'}}>{this.props.poll.option2}</span>
+                            
+                            <br></br>
+                            Poll closed
+                        </label>
+                    </div><br></br>
+
+                    <Chart option1={this.props.poll.option1} option2={this.props.poll.option2} yay={this.props.poll.yay} nay={this.props.poll.nay} />
+
+                    {this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
+                        <div className='comment'>
+                            <div className='commentUser' >
+                                <img src='http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png' height='40' width='40' /><br></br>
+                                <label>{this.props.allUsers.find(user => user.id === comment.user_id).username}</label> 
+                            </div>
+                            <div className='commentContent' >
+                                <label>{comment.content}</label>
+                            </div>
+                        </div>
+                    )}
+
+                    <Button variant="contained" color="link" onClick={this.props.clearPollClick} >Back</Button>
+                </div>
+
+                :
+                
+                <div>
+                    <div className='pollsTitle'>
+                        <label class='actualPollTitle'>{this.props.poll.message}</label><br></br>
+                        <label ><button className='voteBtns' name='yay' onClick={this.props.handleVote}>{this.props.poll.option1}</button> {this.props.poll.yay} - {this.props.poll.nay} <button className='voteBtns' name='nay' onClick={this.props.handleVote}>{this.props.poll.option2}</button><br></br>
+                        Poll closes: {this.props.poll.expiration.split('T')[0] + ' ' + this.props.poll.expiration.split('T')[1].slice(0,5)}</label>
+                    </div><br></br>
+
+                    <Chart option1={this.props.poll.option1} option2={this.props.poll.option2} yay={this.props.poll.yay} nay={this.props.poll.nay} />
+
+                {this.state.allComments !== [] ?
+                    this.state.allComments.filter(comment => comment.poll_id === this.props.poll.id).map(comment => 
+                        <div className='comment'>
+                            <div className='commentUser' >
+                                <img src='http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png' height='40' width='40' /><br></br>
+                                <label>{this.props.allUsers.find(user => user.id === comment.user_id).username}</label> 
+                            </div>
+                            <div className='commentContent' >
+                                <label>{comment.content}</label>
+                            </div>
+                        </div>
+                    )
+                :
+                null
+                }
+                    <CreateComment currentPoll={this.props.currentPoll} currentUser={this.props.currentUser} allUsers={this.props.allUsers} allComments={this.state.allComments} commentInput={this.state.commentInput} handleCommentSubmit={this.handleCommentSubmit} handleNewCommentChange={this.handleNewCommentChange} />
+
+                    <Button variant="contained" color="link" onClick={this.props.clearPollClick} >Back</Button>
+                </div>
+                } */}
+            </> 
         )
     }
 }

@@ -135,11 +135,11 @@ class App extends React.Component {
   render(){ 
     // console.log(this.state.currentUser)
   return (
-    // <div className='background'>
       <div className="App">
   
         <NavBar user={this.state.currentUser} setUser={this.setUser} logOut={this.logOut} />
-        {/* <Title /> */}
+        <div className='contents'>
+        
           <Switch>
             <Route exact path='/'/>
             <Route exact path='/newpoll' render={(routerProps) => <CreatePoll currentUser={this.state.currentUser} {...routerProps} /> } />
@@ -152,10 +152,11 @@ class App extends React.Component {
           {/* <MainContainer allPolls={this.state.allPolls} allUsers={this.state.allUsers} /> */}
           
           {/* {console.log(this.state.allUsers)} */}
-
+          
           <Footer />
+          </div>
         </div>
-    // </div>
+    
   )}
   }
 

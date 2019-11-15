@@ -8,7 +8,7 @@ export default class StackedBarGraph extends Component {
     makeChart(props){
         const ctx = document.getElementById("myChart");
         myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'horizontalBar',
             data: {
                 labels: [this.props.option1, this.props.option2],
                 datasets: [{
@@ -26,17 +26,21 @@ export default class StackedBarGraph extends Component {
                 }]
             },
             options: {
+                legend: {
+                    display: false
+                },
                 responsive: false,
                 scales: {
-                xAxes: [{
-                    ticks: {
-                        maxRotation: 90,
-                        minRotation: 80
-                    }
-                }],
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        maxRotation: -90,
+                        minRotation: 0
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
                     }
                 }]
                 }
@@ -58,7 +62,7 @@ export default class StackedBarGraph extends Component {
     render() {
         return (
             <div>
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <canvas id="myChart" width="1000" height="400"></canvas>
             </div>
         )
     }

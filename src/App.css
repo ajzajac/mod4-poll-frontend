@@ -55,12 +55,11 @@ html, body {
   margin: auto;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 15px;
-  position: sticky;
 }
 
 .logo{
   /* position: relative; */
-  margin-right:26.5%;
+  margin-right:18%;
 }
 
 .linkto {
@@ -85,7 +84,7 @@ a:link {
   padding: 2px;
   height: 150px;
   background-color: rgba(245, 245, 245, 0.65);
-  box-shadow: 3px 3px 3px firebrick;
+  box-shadow: 5px 5px 5px firebrick;
   border-radius: 15px;
 }
 
@@ -95,7 +94,7 @@ a:link {
 
 .polls{
   border-width:3px;
-  box-shadow:5px 3px 3px firebrick;
+  box-shadow:5px 5px 5px firebrick;
   border-style: solid;
   width: 70%;
   margin:auto;
@@ -114,7 +113,7 @@ a:link {
 
 .pollsTitle{
   border-width:3px;
-  box-shadow:5px 3px 3px firebrick;
+  box-shadow:5px 5px 5px firebrick;
   border-style: solid;
   width: 70%;
   margin:auto;
@@ -143,7 +142,7 @@ a:link {
 .comment{
   /* border-width:1.5px;
   border-style: solid; */
-  width: 35%;
+  width: 45%;
   /* border-color: cornflowerblue; */
   margin:auto;
   margin-top: 15px;
@@ -172,18 +171,41 @@ a:link {
   /* margin: 2px; */
   margin-left: 1px;
   padding: 5px;
-  width: 85%;
+  width: 79.5%;
   /* border-color: papayawhip; */
   text-align: left;
   background-color: rgba(245, 245, 245, 0.95);
-  overflow-x: auto;
+  /* overflow-x: auto; */
+  overflow-wrap: break-word;
   border-radius: 15px;
   box-shadow: 5px 5px 5px cornflowerblue;
 }
 
 .voteBtns{
   font-size: 20px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
+  margin-left: 35px;
+  margin-right: 35px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.voteBtnDiv {
+  border-style:solid;
+  border-width: 1px;
+  box-shadow:5px 5px 5px firebrick;
+  width: 50%;
+  /* display: flex; */
+  margin:auto;
+  margin-bottom: 25px;
+  background-color: rgba(245, 245, 245, 0.55);
+  border-color: black;
+  border-radius: 15px;
+  padding:4px;
+  height: 29.5%;
+  font-weight: bold;
+  font-size: 25px;
+  font-variant: small-caps;
 }
 
 .pollHeader{
@@ -257,8 +279,48 @@ a:link {
   padding: 2px;
   height: 150px;
   background-color: rgba(0, 0, 0, 0.65);
-  box-shadow: 3px 3px 3px green;
+  box-shadow: 5px 5px 5px slateblue;
   border-radius: 15px;
   color: floralwhite;
   border-color:rgba(0, 0, 0, 0.65);
+}
+
+.actualPollTitle{
+  font-size: 3.5vw;
+  margin-bottom: 5px;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.pollCardStatus {
+  border-width:0.5px;
+  border-style: solid;
+  border-color: black;
+  width: 20%;
+  margin:auto;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  background-color: rgba(245, 245, 245, 0.65);
+  box-shadow: 3px 3px 3px firebrick;
+  border-radius: 6px;
+  font-size: 18.5px;
+  font-weight: bold;
+}
+
+.pollCardStatusClosed {
+  border-width:0.5px;
+  border-style: solid;
+  border-color: whitesmoke;
+  width: 20%;
+  margin:auto;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.65);
+  box-shadow: 3px 3px 3px slateblue;
+  border-radius: 6px;
+  font-size: 18.5px;
+  font-weight: bold;
+  color: white
 }
