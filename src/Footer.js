@@ -1,6 +1,6 @@
 import React from 'react';
 
-let str = 'Justin and Andrew \u00A9 2019'
+let str = 'Justin & Andrew \u00A9 2019'
 
 export default function Footer(props) {
 

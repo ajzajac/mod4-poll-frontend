@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { Link, Router } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import Signup from './Signup';
 import title from './assets/title.png';
 

@@ -10,7 +10,7 @@ export default class StackedBarGraph extends Component {
         myChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
-                labels: [this.props.option1, this.props.option2],
+                labels: [this.props.option1, this.props.option2], 
                 datasets: [{
                     label: 'Votes',
                     data: [props.yay, props.nay],
@@ -31,19 +31,20 @@ export default class StackedBarGraph extends Component {
                 },
                 responsive: false,
                 scales: {
-                yAxes: [{
-                    ticks: {
-                        maxRotation: -90,
-                        minRotation: 0
-                    }
-                }],
-                xAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        stepSize: 1
-                    }
-                }]
-                }
+                    yAxes: [{
+                        ticks: {
+                            maxRotation: 0,
+                            minRotation: 0,
+                            fontStyle: 'bold'
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1
+                        }
+                    }],
+                },
             }
         });
     }

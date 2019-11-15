@@ -4,11 +4,12 @@ import './App.css';
 import PollList from './PollList'
 import NavBar from './NavBar'
 import User from './User'
-import { Router, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import Login from './Login'
 import Signup from './Signup'
 import CreatePoll from './CreatePoll'
 import Profile from './Profile'
+import Gambling from './Gambling'
 import Footer from './Footer'
 
 const polls = `http://localhost:3000/polls`
@@ -147,7 +148,23 @@ class App extends React.Component {
             <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} {...routerProps} /> } />
             <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} {...routerProps} /> } />
             <Route exact path='/profile' render={(routerProps) => <Profile user={this.state.currentUser} allUsers={this.state.allUsers} allPolls={this.state.allPolls} header='My Created Polls' autoLogin={this.autoLogin} {...routerProps} /> } />
+            {/* <Route exact path='/betting_table' 
+              render={
+                (routerProps) => 
+                  <Gambling 
+                    currentUser={this.state.currentUser} 
+                    allUsers={this.state.allUsers} 
+                    allPolls={this.state.allPolls} 
+                    {...routerProps} 
+                  /> 
+              } 
+            /> */}
           </Switch>
+          
+          {/* {this.state.currentUser? 
+              <Link to='/betting_table' className='gamblingBtn'><button></button></Link>
+              : null
+          } */}
 
           {/* <MainContainer allPolls={this.state.allPolls} allUsers={this.state.allUsers} /> */}
           

@@ -1,13 +1,11 @@
 html, body {
   /* background-color: floralwhite; */
   height: 100%;
-
   background-image: url('https://ak8.picdn.net/shutterstock/videos/25718228/thumb/1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;  
   overflow: scroll;
-  
 }
 
 /* .background{
@@ -286,8 +284,8 @@ a:link {
 }
 
 .actualPollTitle{
-  font-size: 3.5vw;
-  margin-bottom: 5px;
+  font-size: 3.0vw;
+  margin-bottom: 5px; 
 }
 
 .bold{
@@ -323,4 +321,62 @@ a:link {
   font-size: 18.5px;
   font-weight: bold;
   color: white
+}
+
+.gamblingPolls{
+  border-width:1px;
+  box-shadow:5px 5px 5px slateblue;
+  border-style: solid;
+  height:70px;
+  width: 70%;
+  margin:auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-color: whitesmoke;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  color: whitesmoke;
+}
+
+.gamblingDiv {
+  width: 100%;
+  display: flex;
+}
+
+.gamblingMessage{
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.gamblingMessageLine{
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+
+.gamblingBtnsDiv{
+  justify-content: center;
+}
+
+.gamblingBtns{
+  width: 350px;
+  font-size: 12px;
+  height:30px;
+  margin-top:3.5px;
+  background-color: rgba(250, 250, 250, 0.85);
+}
+
+.bettingHeader{
+  border-width:1px;
+  border-style: solid;
+  border-color: whitesmoke;
+  width: 50%;
+  margin:auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.65);
+  box-shadow: 3px 3px 3px slateblue;
+  border-radius: 15px;
+  padding:3px;
+  color:whitesmoke;
 }
