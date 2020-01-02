@@ -98,7 +98,6 @@ class App extends React.Component {
   
   componentDidUpdate = (prevProps, prevState) => {
     // console.log('PREVOIUS', prevProps, prevState)
-    // console.log("CURRENT", this.props, this.state)
    
     if(prevProps.location.pathname === ('/newpoll' || '/profile') && this.props.location.pathname === '/polls'){
       this.fetchAllPolls()
