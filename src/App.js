@@ -12,9 +12,9 @@ import Profile from './Profile'
 import Gambling from './Gambling'
 import Footer from './Footer'
 
-const polls = `http://localhost:3000/polls`
-const users = `http://localhost:3000/users`
-const comments = `http://localhost:3000/comments`
+const polls = `https://everbody-votes.herokuapp.com/polls`
+const users = `https://everbody-votes.herokuapp.com/users`
+const comments = `https://everbody-votes.herokuapp.com/comments`
 
 class App extends React.Component {
 

@@ -85,19 +85,19 @@ export class PollCard extends Component {
     }
 
     // //----------------------------NEED THIS DO NOT DELETE----------------------------------------------------------------------------
-        // componentDidUpdate = (nextState) => {
-        //  if(this.shouldComponentUpdate(nextState)){
-        //     this.fetchAllComments()
-        //     }
-        // }
-
-        // shouldComponentUpdate(nextState){
-        //     return nextState.allComments !== this.state.allComments
-        // }
-
-        componentDidUpdate = () => {
+        componentDidUpdate = (nextState) => {
+         if(this.shouldComponentUpdate(nextState)){
             this.fetchAllComments()
+            }
         }
+
+        shouldComponentUpdate(nextState){
+            return nextState.allComments !== this.state.allComments
+        }
+
+        // componentDidUpdate = () => {
+        //     this.fetchAllComments()
+        // }
 
     // //--------------------------------------------------------------------------------------------------------
 
